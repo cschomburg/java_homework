@@ -6,7 +6,7 @@
  *
  * Berechnet die Fakultät einer fest genannten Zahl.
  */
-class Fact {
+public class Fact {
 
 	public static void main(String... args) {
 		int n = 5;
