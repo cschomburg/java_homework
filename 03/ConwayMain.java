@@ -10,8 +10,11 @@
 public class ConwayMain {
 
 	public static void main(String... args) {
+		int rounds = 10;
+		if (args.length > 0)
+			rounds = Integer.parseInt(args[0]);
+
 		Conway game = new Conway();
-		int rounds = Integer.parseInt(args[0]);
 		game.start(rounds);
 	}
 }
