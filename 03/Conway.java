@@ -18,6 +18,7 @@ class Conway {
 	public Conway() {
 		grid = new int[10][10];
 
+		// Glider
 		grid[5][4] = 1;
 		grid[6][5] = 1;
 		grid[4][6] = 1;
@@ -33,39 +34,44 @@ class Conway {
 	 */
 	public void checkAndSet(int x, int y) {
 		int neighbours = 0;
+
+		// Obere Reihe
 		if (y > 1) {
 			if (x > 1) {
-				neighbours += grid[x-1][y-1];
+				neighbours += grid[x-1][y-1]; // Links
 			}
-			neighbours += grid[x][y - 1];
+			neighbours += grid[x][y - 1]; // Mitte
 			if (x < grid.length-1) {
-				neighbours += grid[x+1][y-1];
+				neighbours += grid[x+1][y-1]; // Rechts
 			}
 		}
 
+		// Mittlere Reihe
 		if (x > 1) {
-			neighbours += grid[x-1][y];
+			neighbours += grid[x-1][y]; // Links
 		}
 		if (x < grid[0].length - 1) {
-			neighbours += grid[x+1][y];
+			neighbours += grid[x+1][y]; // Rechts
 		}
 
+		// Untere Reihe
 		if (y < grid[0].length - 1) {
 			if (x > 1) {
-				neighbours += grid[x-1][y+1];
+				neighbours += grid[x-1][y+1]; // Links
 			}
-			neighbours += grid[x][y+1];
+			neighbours += grid[x][y+1]; // Mitte
 			if (x < grid[0].length - 1) {
-				neighbours += grid[x+1][y+1];
+				neighbours += grid[x+1][y+1]; // Rechts
 			}
 		}
 
-		if (neighbours < 2 || neighbours > 3) {
-			tmp[x][y] = 0;
+		// Regeln
+		if (neighbours == 2) {
+			tmp[x][y] = grid[x][y];
 		} else if (neighbours == 3) {
 			tmp[x][y] = 1;
 		} else {
-			tmp[x][y] = grid[x][y];
+			tmp[x][y] = 0;
 		}
 	}
 
