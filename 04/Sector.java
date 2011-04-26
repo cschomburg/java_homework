@@ -1,3 +1,9 @@
+/**
+ * @author Constantin Schomburg <me@xconstruct.net>
+ *
+ * Übung 04 - Programmieren (Java) - Gruppe 6
+ * 26.04.11 - 03.05.11
+ */
 public class Sector {
 
 	private Tree m_tree;
@@ -5,11 +11,13 @@ public class Sector {
 
 	public Sector() {
 		if (Math.random() > 0.3) {
-			int height = (int)Math.random()*4 + 1;
-			m_tree = new Tree(height, false);
+			int height = (int)(Math.random()*4) + 1;
+			m_tree = new Tree(height);
 		} else {
 			m_tree = null;
 		}
+
+		m_ground = new Ground();
 	}
 
 	public Sector(Tree tree, Ground ground) {

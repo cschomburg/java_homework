@@ -1,3 +1,4 @@
+MAINCLASS=ForestFireSimulation
 CLASSES = \
 		  Tree.class \
 		  Ground.class \
@@ -12,3 +13,6 @@ default: $(CLASSES)
 
 clean:
 	rm -rf *.class
+
+run: $(CLASSES)
+	java $(MAINCLASS)

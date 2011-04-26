@@ -1,3 +1,9 @@
+/**
+ * @author Constantin Schomburg <me@xconstruct.net>
+ *
+ * Übung 04 - Programmieren (Java) - Gruppe 6
+ * 26.04.11 - 03.05.11
+ */
 public class ForestFire {
 
 	private Sector[][] m_grid;
@@ -7,9 +13,10 @@ public class ForestFire {
 		m_size = size;
 		m_grid = new Sector[size][size];
 
+		// Einzelne Felder initialisieren
 		for (int x = 0; x < m_size; x++) {
 			for (int y = 0; y < m_size; y++) {
-				grid[x][y] = new Sector();
+				m_grid[x][y] = new Sector();
 			}
 		}
 	}
@@ -17,27 +24,30 @@ public class ForestFire {
 	public void step() {
 		Sector[][] tmp = new Sector[m_size][m_size];
 
+		// Einzelne Felder iterieren
 		for (int x = 0; x < m_size; x++) {
 			for (int y = 0; y < m_size; y++) {
-				tmp[x][y] = grid[x][y].iterate(grid, x, y);
+				tmp[x][y] = m_grid[x][y].iterate(m_grid, x, y);
 			}
 		}
 
-		grid = tmp;
+		m_grid = tmp;
 	}
 
 	public void start(int rounds) {
+		// Zufällig Bäume anzünden
 		for (int x = 0; x < m_size; x++) {
 			for (int y = 0; y < m_size; y++) {
-				if (grid[x][y].getTree() && Math.random() <= 0.15) {
-					grid[x][y].getTree().setBurned(true);
+				if (m_grid[x][y].getTree() != null && Math.random() <= 0.15) {
+					m_grid[x][y].getTree().setBurning(true);
 				}
 			}
 		}
 		
 		System.out.println("Start configuration");
 		System.out.println(this);
-
+		
+		// Simulation durchlaufen und ausgeben
 		for (int i = 1; i <= rounds; i++) {
 			step();
 			System.out.println("Step " + i);
@@ -49,7 +59,7 @@ public class ForestFire {
 		String result = "";
 		for (int x = 0; x < m_size; x++) {
 			for (int y = 0; y < m_size; y++) {
-				result += grid[x][y] + " ";
+				result += m_grid[x][y] + " ";
 			}
 			result += "\n";
 		}
