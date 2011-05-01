@@ -8,15 +8,22 @@ public class Ground {
 
 	private boolean m_burned;
 
+	public Ground() {}
+
+	public Ground(boolean burned) {
+		m_burned = burned;
+	}
+
 	public boolean isBurned() {
 		return m_burned;
 	}
 
 	public Ground iterate(final Sector[][] grid, final int x, final int y) {
+		boolean burned = m_burned;
 		Tree tree = grid[x][y].getTree();
-		if (tree != null && tree.getHeight() == 0)
-			m_burned = true;
-		return this;
+		if (tree != null && tree.isBurning() && tree.getHeight() == 1)
+			burned = true;
+		return new Ground(burned);
 	}
 
 	public String toString() {

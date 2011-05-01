@@ -9,9 +9,9 @@ public class Tree {
 	private int m_height;
 	private boolean m_burning;
 
-	public Tree(int height) {
+	public Tree(int height, boolean burning) {
 		m_height = height;
-		m_burning = false;
+		m_burning = burning;
 	}
 
 	public int getHeight() {
@@ -27,27 +27,30 @@ public class Tree {
 	}
 
 	public Tree iterate(final Sector[][] grid, final int x, final int y) {
-		if (m_burning) {
-			m_height--;
+		int height = m_height;
+		boolean burning = m_burning;
+
+		if (burning) {
+			height--;
 		}
-		if (m_height == 0) {
+		if (height == 0) {
 			return null;
 		}
 
 		// Suche brennende Nachbarbäume
-		if (!m_burning) {
-			DX: for (int nX = x-1; nX <= x+1; nX += 2) {
-				for (int nY = y-1; nY <= y+1; nY += 2) {
-					if (   nX >= 0 && nX < grid[0].length && nY >= 0 && nY < grid.length
-						&& grid[nX][nY].getTree() != null && grid[nX][nY].getTree().isBurning()) {
-						m_burning = true;
-						break DX;
-					}
-				}
-			}
+		if (!burning) {
+			burning = isTreeBurning(grid, x, y-1) || isTreeBurning(grid, x, y+1)      // Oben, unten
+					  || isTreeBurning(grid, x-1, y) || isTreeBurning(grid, x+1, y);  // Links, Rechts
 		}
 
-		return this;
+		return new Tree(height, burning);
+	}
+
+	public static boolean isTreeBurning(final Sector[][]grid, final int x, final int y) {
+		return (   (x >= 0) && (x < grid.length)		// X in Gitter
+				&& (y >= 0) && (y < grid[0].length)		// Y in Gitter
+			    && (grid[x][y].getTree() != null)		// Baum existiert
+				&& grid[x][y].getTree().isBurning());	// Baum brennt
 	}
 
 	public String toString() {

@@ -11,8 +11,8 @@ public class Sector {
 
 	public Sector() {
 		if (Math.random() > 0.3) {
-			int height = (int)(Math.random()*4) + 1;
-			m_tree = new Tree(height);
+			int height = (int)(Math.random()*5) + 1;
+			m_tree = new Tree(height, false);
 		} else {
 			m_tree = null;
 		}
