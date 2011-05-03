@@ -17,13 +17,6 @@ class Conway {
 	 */
 	public Conway() {
 		grid = new int[10][10];
-
-		// Glider
-		grid[5][4] = 1;
-		grid[6][5] = 1;
-		grid[4][6] = 1;
-		grid[5][6] = 1;
-		grid[6][6] = 1;
 	}
 
 	/**
@@ -38,40 +31,40 @@ class Conway {
 		// Obere Reihe
 		if (y > 1) {
 			if (x > 1) {
-				neighbours += grid[x-1][y-1]; // Links
+				neighbours += grid[y-1][x-1]; // Links
 			}
-			neighbours += grid[x][y - 1]; // Mitte
+			neighbours += grid[y-1][x]; // Mitte
 			if (x < grid.length-1) {
-				neighbours += grid[x+1][y-1]; // Rechts
+				neighbours += grid[y-1][x+1]; // Rechts
 			}
 		}
 
 		// Mittlere Reihe
 		if (x > 1) {
-			neighbours += grid[x-1][y]; // Links
+			neighbours += grid[y][x-1]; // Links
 		}
 		if (x < grid[0].length - 1) {
-			neighbours += grid[x+1][y]; // Rechts
+			neighbours += grid[y][x+1]; // Rechts
 		}
 
 		// Untere Reihe
 		if (y < grid[0].length - 1) {
 			if (x > 1) {
-				neighbours += grid[x-1][y+1]; // Links
+				neighbours += grid[y+1][x-1]; // Links
 			}
-			neighbours += grid[x][y+1]; // Mitte
+			neighbours += grid[y+1][x]; // Mitte
 			if (x < grid[0].length - 1) {
-				neighbours += grid[x+1][y+1]; // Rechts
+				neighbours += grid[y+1][x+1]; // Rechts
 			}
 		}
 
 		// Regeln
 		if (neighbours == 2) {
-			tmp[x][y] = grid[x][y];
+			tmp[y][x] = grid[y][x];
 		} else if (neighbours == 3) {
-			tmp[x][y] = 1;
+			tmp[y][x] = 1;
 		} else {
-			tmp[x][y] = 0;
+			tmp[y][x] = 0;
 		}
 	}
 
@@ -79,9 +72,9 @@ class Conway {
 	 * Gibt das aktuelle Spielfeld aus
 	 */
 	public void print() {
-		for (int y = 0; y < grid[0].length; y++) {
-			for (int x = 0; x < grid.length; x++) {
-				if (grid[x][y] == 1) {
+		for (int y = 0; y < grid.length; y++) {
+			for (int x = 0; x < grid[y].length; x++) {
+				if (grid[y][x] == 1) {
 					System.out.print("0");
 				} else {
 					System.out.print(".");
@@ -97,8 +90,8 @@ class Conway {
 	public void step() {
 		tmp = new int[grid.length][grid[0].length];
 
-		for (int x = 0; x < grid.length; x++) {
-			for (int y = 0; y < grid[0].length; y++) {
+		for (int y = 0; y < grid.length; y++) {
+			for (int x = 0; x < grid[y].length; x++) {
 				checkAndSet(x, y);
 			}
 		}
@@ -118,6 +111,27 @@ class Conway {
 			step();
 			System.out.printf("\nStep %d\n", round);
 			print();
+		}
+	}
+
+	/**
+	 * Fügt ein Muster an der Stelle (x, y) ins Gitter ein
+	 *
+	 * @param pattern Zweidimensionales Array mit Muster
+	 * @param x X-Koordinate
+	 * @param y Y-Koordinate
+	 */
+	public void setPattern(final int[][] pattern, int x, int y) {
+		for (int pY = 0; pY < pattern.length; pY++) {
+			for (int pX = 0; pX < pattern[pY].length;  pX++) {
+				int gX = pX + x;
+				int gY = pY + y;
+
+				if ((gY >= 0) && (gY < grid.length)
+					&& (gX >= 0) && (gX < grid[0].length)) {
+					grid[gY][gX] = pattern[pY][pX];
+				}
+			}
 		}
 	}
 }

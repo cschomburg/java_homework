@@ -15,6 +15,23 @@ public class ConwayMain {
 			rounds = Integer.parseInt(args[0]);
 
 		Conway game = new Conway();
+
+		int[][] pulsar = {{ 1, 1, 0, 0 },
+						  { 1, 1, 0, 0 },
+						  { 0, 0, 1, 1 },
+						  { 0, 0, 1, 1 }};
+
+		int[][] glider = {{ 0, 1, 0 },
+						   { 0, 0, 1 },
+						   { 1, 1, 1 }};
+
+		int[][] spaceship = {{ 1, 0, 0, 1, 0 },
+							 { 0, 0, 0, 0, 1 },
+							 { 1, 0, 0, 0, 1 },
+							 { 0, 1, 1, 1, 1 }};
+
+		game.setPattern(glider, 3, 3);
+
 		game.start(rounds);
 	}
 }
