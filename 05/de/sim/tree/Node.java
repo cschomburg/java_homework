@@ -1,10 +1,20 @@
+/**
+ * @author Constantin Schomburg <me@xconstruct.net>
+ *
+ * Übung 05 - Programmieren (Java) - Gruppe 6
+ * 03.04.11 - 10.05.11
+ */
+
 package de.sim.tree;
 
+/**
+ * Stellt einen Knoten im Expression-Tree dar.
+ */
 public class Node {
 
 	private Node m_leftChild;
 	private Node m_rightChild;
-	private int m_data;
+	private float m_data;
 	private char m_type;
 
 	public Node() {}
@@ -13,7 +23,7 @@ public class Node {
 		m_type = type;
 	}
 
-	public Node(int data) {
+	public Node(float data) {
 		m_type = 'l';
 		m_data = data;
 	}
@@ -34,7 +44,7 @@ public class Node {
 		m_rightChild = rightChild;
 	}
 
-	public int getData() {
+	public float getData() {
 		return m_data;
 	}
 
@@ -48,7 +58,7 @@ public class Node {
 
 	public String toString() {
 		if (m_type == 'l') {
-			return Integer.toString(m_data);
+			return Float.toString(m_data);
 		} else {
 			return String.format("(%s %s %s)", m_type,
 								 m_leftChild.toString(), m_rightChild);
