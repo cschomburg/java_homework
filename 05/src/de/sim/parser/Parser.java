@@ -88,7 +88,7 @@ public class Parser {
 	 * Startet einen neuen Parse-Vorgang einer S-Expression und gibt
 	 * den Wurzelknoten bei Erfolg zurück.
 	 *
-	 * @param start die S-Expression
+	 * @param tree die S-Expression
 	 * @return Wurzelknoten oder null bei Parse-Fehler
 	 */
 	public Node start(final String tree) {
