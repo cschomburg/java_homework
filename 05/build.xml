@@ -82,10 +82,8 @@
 
 	<target name="zip">
 		<zip destfile="${build.dir}/${ant.project.name}.zip">
-			<zipfileset dir=".">
-				<include name="build.xml" />
-			</zipfileset>
-			<zipfileset dir="${src.dir}" />
+			<fileset dir="." includes="build.xml"></fileset>
+			<fileset dir="${src.dir}" />
 			<!--<zipfileset dir="${lib.dir}" />-->
 		</zip>
 	</target>
