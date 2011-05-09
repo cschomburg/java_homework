@@ -43,7 +43,7 @@ public class Main {
 		Node root = parser.start(args[0]);
 		if (root != null) {
 			float result = walker.walk(root);
-			System.out.println(result);
+			System.out.println(root.toString() + " = " + result);
 		}
 	}
 }
