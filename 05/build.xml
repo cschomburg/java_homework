@@ -86,7 +86,7 @@
 				<include name="build.xml" />
 			</zipfileset>
 			<zipfileset dir="${src.dir}" />
-			<zipfileset dir="${lib.dir}" />
+			<!--<zipfileset dir="${lib.dir}" />-->
 		</zip>
 	</target>
 
