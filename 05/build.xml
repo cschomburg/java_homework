@@ -1,3 +1,18 @@
+<!--
+	 Constantin Schomburg <me@xconstruct.net>
+
+	 Übung 05 - Programmieren (Java) - Gruppe 6
+	 03.04.11 - 10.05.11
+
+	 Ant-Tasks:
+	  - clean
+	  - compile
+	  - jar
+	  - run
+	  - doc
+	  - zip
+-->
+
 <project name="SExpression" basedir="." default="main">
 
 	<property name="main-class" value="de.sim.Main" />
@@ -12,7 +27,7 @@
 
 
 	<path id="classpath">
-		<fileset dir="${lib.dir}" includes="**/*.jar" />
+		<!--<fileset dir="${lib.dir}" includes="**/*.jar" />-->
 	</path>
 
 	<target name="clean">
@@ -48,7 +63,7 @@
 
 	<target name="main" depends="clean,run" />
 
-	<target name="junit" depends="jar">
+	<!--<target name="junit" depends="jar">
 		<junit printsummary="yes">
 			<classpath>
 				<path refid="classpath" />
@@ -59,7 +74,7 @@
 				<fileset dir="${src.dir}" includes="*Test.java" />
 			</batchtest>
 		</junit>
-	</target>
+	</target>-->
 
 	<target name="doc">
 		<javadoc sourcepath="${src.dir}" destdir="${doc.dir}" charset="UTF-8" />
