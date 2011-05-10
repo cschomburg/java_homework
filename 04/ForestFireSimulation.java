@@ -7,19 +7,14 @@
 public class ForestFireSimulation {
 
 	public static void main(String... args) {
-		int rounds = 10;
 		int size = 15;
 
-		// Erster Parameter: Anzahl Runden
-		if (args.length > 0) {
-			rounds = Integer.parseInt(args[0]);
-		}
 		// Zweiter Parameter: Größe Feld
-		if (args.length > 1) {
+		if (args.length > 0) {
 			size = Integer.parseInt(args[1]);
 		}
 
 		ForestFire forestFire = new ForestFire(size);
-		forestFire.start(rounds);
+		forestFire.start();
 	}
 }

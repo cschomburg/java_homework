@@ -34,7 +34,21 @@ public class ForestFire {
 		m_grid = tmp;
 	}
 
-	public void start(int rounds) {
+	public boolean isFinished() {
+		for (int x = 0; x < m_size; x++) {
+			for (int y = 0; y < m_size; y++) {
+				if (m_grid[x][y].getTree() != null &&
+					m_grid[x][y].getTree().isBurning())
+				{
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+
+	public void start() {
 		// Zufällig Bäume anzünden
 		for (int x = 0; x < m_size; x++) {
 			for (int y = 0; y < m_size; y++) {
@@ -48,10 +62,13 @@ public class ForestFire {
 		System.out.println(this);
 		
 		// Simulation durchlaufen und ausgeben
-		for (int i = 1; i <= rounds; i++) {
+		//for (int i = 1; i <= rounds; i++) {
+		int i = 1;
+		while (!isFinished()) {
 			step();
 			System.out.println("Step " + i);
 			System.out.println(this);
+			i++;
 		}
 	}
 
