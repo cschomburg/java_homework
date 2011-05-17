@@ -1,3 +1,10 @@
+/**
+ * @author Constantin Schomburg <me@xconstruct.net>
+ *
+ * Übung 06 - Programmieren (Java) - Gruppe 6
+ * 10.05.11 - 17.05.11
+ */
+
 package de.sim;
 
 import de.sim.enumeration.SortMode;
@@ -5,6 +12,9 @@ import de.sim.interfaces.ISortable;
 import de.sim.media.*;
 import de.sim.sort.Sort;
 
+/**
+ * Hauptklasse
+ */
 public class Main {
 
 	static public void main(String... args) {
@@ -21,6 +31,12 @@ public class Main {
 		sortAndPrint(SortMode.TITLE, sortables);
 	}
 
+	/**
+	 * Sortiert das Array und gibt es aus
+	 *
+	 * @param mode Sortierungsmodus
+	 * @param sortables Array mit sortierbaren Objekten
+	 */
 	static public void sortAndPrint(SortMode mode, final ISortable[] sortables) {
 		Sort.sort(sortables, mode);
 

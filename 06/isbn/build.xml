@@ -11,6 +11,7 @@
 	  - run
 	  - doc
 	  - zip
+	  - junit
 -->
 
 <project name="ISBN" basedir="." default="main">
@@ -27,7 +28,7 @@
 
 
 	<path id="classpath">
-		<!--<fileset dir="${lib.dir}" includes="**/*.jar" />-->
+		<pathelement location="${ant.home}/lib/junit.jar" />
 	</path>
 
 	<target name="clean">
@@ -37,7 +38,7 @@
 
 	<target name="compile">
 		<mkdir dir="${classes.dir}" />
-		<javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath" />
+		<javac includeantruntime="false" srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath" />
 		<copy todir="${classes.dir}">
 			<fileset dir="${src.dir}" excludes="**/*.java" />
 		</copy>
@@ -63,18 +64,18 @@
 
 	<target name="main" depends="clean,run" />
 
-	<!--<target name="junit" depends="jar">
-		<junit printsummary="yes">
+	<target name="junit" depends="clean,jar">
+		<junit>
 			<classpath>
 				<path refid="classpath" />
-				<path refid="application" />
+				<path location="${jar.dir}/${ant.project.name}.jar" />
 			</classpath>
-
+			<formatter type="plain" usefile="false" />
 			<batchtest fork="yes">
-				<fileset dir="${src.dir}" includes="*Test.java" />
+				<fileset dir="${src.dir}" includes="**/*Test.java" />
 			</batchtest>
 		</junit>
-	</target>-->
+	</target>
 
 	<target name="doc">
 		<javadoc sourcepath="${src.dir}" destdir="${doc.dir}" charset="UTF-8" />

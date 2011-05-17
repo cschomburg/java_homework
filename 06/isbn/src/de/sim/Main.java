@@ -1,7 +1,23 @@
+/**
+ * @author Constantin Schomburg <me@xconstruct.net>
+ *
+ * Übung 06 - Programmieren (Java) - Gruppe 6
+ * 10.05.11 - 17.05.11
+ */
+
 package de.sim;
 
+/**
+ * Hauptklasse
+ */
 public class Main {
 
+	/**
+	 * Prüft eine ISBN auf Gültigkeit
+	 *
+	 * @param isbn die ISBN
+	 * @return true bei Gültigkeit
+	 */
 	public static boolean checkISBN(String isbn) {
 		int sum = 0;
 		int factor = 10;
@@ -15,6 +31,8 @@ public class Main {
 				value = 10;
 			} else {
 				value = Character.digit(c, 10);
+				if (value == -1) // Ungültiges Zeichen
+					return false;
 			}
 
 			if (factor <= 0)
