@@ -2,7 +2,7 @@
  * @author Constantin Schomburg <me@xconstruct.net>
  *
  * Übung 07 - Programmieren (Java) - Gruppe 6
- * 17.05.11 - 24.05.11
+ * 17.05.11 - 31.05.11
  */
 
 package de.sim.stack;
@@ -59,5 +59,20 @@ public class Stack {
 	 */
 	public boolean isEmpty() {
 		return m_topNode == null;
+	}
+
+	/**
+	 * Leert den Stack und gibt ihn in String-Form aus
+	 *
+	 * @return String-Repräsentation
+	 */
+	public String toStringEmpty() {
+		String contents = "";
+		while (!isEmpty()) {
+			if (!contents.isEmpty())
+				contents += ",";
+			contents += pop();
+		}
+		return "["+contents+"]";
 	}
 }

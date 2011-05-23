@@ -1,17 +1,20 @@
 <!--
 	 Constantin Schomburg <me@xconstruct.net>
 
-	 Übung 06 - Programmieren (Java) - Gruppe 6
-	 10.05.11 - 17.05.11
+	 Übung 07 - Programmieren (Java) - Gruppe 6
+	 14.05.11 - 31.05.11
 
 	 Ant-Tasks:
+	  - jar:   Generiere Jar-Package
+	  - run:   Führe Programm aus
+	  - doc:   Generiere Dokumentation
+	  - zip:   Komprimiere Source-Code
+	  - junit: Durchlaufe Tests
+
+	 Sonstige:
 	  - clean
 	  - compile
-	  - jar
-	  - run
-	  - doc
-	  - zip
-	  - junit
+	  - compile-tests
 -->
 
 <project name="StackCalc" basedir="." default="main">
@@ -89,7 +92,6 @@
 		<zip destfile="${build.dir}/${ant.project.name}.zip">
 			<fileset dir="." includes="build.xml"></fileset>
 			<fileset dir="${src.dir}" />
-			<!--<zipfileset dir="${lib.dir}" />-->
 		</zip>
 	</target>
 
