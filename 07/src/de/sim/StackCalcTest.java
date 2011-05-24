@@ -26,7 +26,7 @@ public class StackCalcTest {
 	public void singleTest(String input, String expected) {
 		StackCalc calc = new StackCalc();
 		Stack stack = calc.calc(input);
-		assertEquals(expected, stack.toStringEmpty());
+		assertEquals(expected, stack.toString());
 	}
 
 	/**

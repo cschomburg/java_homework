@@ -50,4 +50,16 @@ public class Node {
 	public int getData() {
 		return m_data;
 	}
+
+	/**
+	 * Gibt den Knoten und seinen Nachbarknoten als String zurück
+	 *
+	 * @return String-Repräsentation
+	 */
+	@Override public String toString() {
+		if (m_next == null)
+			return ""+m_data;
+
+		return m_data + "," + m_next.toString();
+	}
 }

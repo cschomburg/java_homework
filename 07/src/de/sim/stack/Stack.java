@@ -62,17 +62,14 @@ public class Stack {
 	}
 
 	/**
-	 * Leert den Stack und gibt ihn in String-Form aus
+	 * Gibt den Stack in String-Form zurück
 	 *
 	 * @return String-Repräsentation
 	 */
-	public String toStringEmpty() {
-		String contents = "";
-		while (!isEmpty()) {
-			if (!contents.isEmpty())
-				contents += ",";
-			contents += pop();
-		}
-		return "["+contents+"]";
+	@Override public String toString() {
+		if (isEmpty())
+			return "[]";
+
+		return "["+m_topNode.toString()+"]";
 	}
 }

@@ -27,6 +27,6 @@ public class Main {
 
 		StackCalc calc = new StackCalc();
 		Stack stack = calc.calc(args[0]);
-		System.out.println(stack.toStringEmpty());
+		System.out.println(stack);
 	}
 }

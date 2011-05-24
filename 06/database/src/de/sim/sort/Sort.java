@@ -21,7 +21,7 @@ public class Sort {
 	 * @param array Sortables
 	 * @param mode Sortierungsmodus
 	 */
-	public static void sort(ISortable[] array, SortMode mode) {
+	public static void selectionSort(ISortable[] array, SortMode mode) {
 		for (int pos = 0; pos < array.length; pos++) {
 
 			// Finde kleinsten Wert
@@ -40,5 +40,35 @@ public class Sort {
 			array[pos] = array[minPos];
 			array[minPos] = tmp;
 		}
+	}
+
+	/**
+	 * Sortiert ein Array von Sortables mit Insertion Sort
+	 *
+	 * @param array Sortables
+	 * @param mode Sortierungsmodus
+	 */
+	public static void insertionSort(ISortable[] array, SortMode mode) {
+		for (int i = 1; i < array.length; i++) {
+			ISortable value = array[i];
+			int j = i;
+			String valString = value.getSortString(mode);
+
+			while (j > 0 && array[j-1].getSortString(mode).compareTo(valString) > 0) {
+				array[j] = array[j-1];
+				j--;
+			}
+			array[j] = value;
+		}
+	}
+
+	/**
+	 * Sortiert ein Array von Sortables
+	 *
+	 * @param array Sortables
+	 * @param mode Sortierungsmodus
+	 */
+	public static void sort(ISortable[] array, SortMode mode) {
+		insertionSort(array, mode);
 	}
 }
