@@ -1,17 +1,21 @@
+import java.util.HashMap;
+
 public class InternalPhoneBook {
 	
-	HashMap<int, String> m_phoneBook;
+	private HashMap<String, String> m_phoneBook;
 
-	public InternalPhoneBook() {}
-
-	public void add(int phoneNumber, String name) {
-		m_phoneBook[phoneNumber] = name;
+	public InternalPhoneBook() {
+		m_phoneBook = new HashMap<String, String>();
 	}
 
-	public String getCallerID(int phoneNumber) {
-		String caller = m_phoneBook[phoneNumber];
-		if (caller.empty()) {
-			caller = phoneNumber.toString() + "unbekannter Teilnehmer";
+	public void add(String phoneNumber, String name) {
+		m_phoneBook.put(phoneNumber, name);
+	}
+
+	public String getCallerID(String phoneNumber) {
+		String caller = m_phoneBook.get(phoneNumber);
+		if (caller == null) {
+			caller = phoneNumber.toString() + " unbekannter Teilnehmer";
 		}
 		return caller;
 	}

@@ -17,9 +17,9 @@
 	  - compile-tests
 -->
 
-<project name="PhoneBookTest" basedir="." default="main">
+<project name="Phone" basedir="." default="main">
 
-	<property name="main-class" value="de.sim.Main" />
+	<property name="main-class" value="Phone" />
 
 	<property name="src.dir" value="src" />
 	<property name="lib.dir" value="lib" />

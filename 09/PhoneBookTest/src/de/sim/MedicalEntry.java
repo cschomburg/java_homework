@@ -4,13 +4,14 @@ public class MedicalEntry extends CommercialEntry {
 
 	private String m_emergencyNumber;
 
-	public MedicalEntry(String name, String phonenumber, String m_emergencyNumber) {
-		Entry(name, phoneNumber);
+	public MedicalEntry(String name, String phoneNumber, String emergencyNumber) {
+		setName(name);
+		setPhoneNumber(phoneNumber);
 		m_emergencyNumber = emergencyNumber;
 	}
 
-	@Override public toString() {
+	@Override public String toString() {
 		return String.format("%s\tRufnummer für Notfälle: %s",
-				super.toString(), m_rating);
+				super.toString(), m_emergencyNumber);
 	}
 }

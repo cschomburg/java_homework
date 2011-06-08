@@ -5,6 +5,8 @@ public class Entry {
 	private String m_name;
 	private String m_phoneNumber;
 
+	public Entry() {}
+
 	public Entry(String name, String phoneNumber) {
 		m_name = name;
 		m_phoneNumber = phoneNumber;
@@ -25,7 +27,14 @@ public class Entry {
 		m_phoneNumber = phoneNumber;
 	}
 
-	@Override public void toString() {
-		return m_name + "..." + m_phoneNumber;
+	@Override public String toString() {
+		return padding(m_name, 25) + m_phoneNumber;
+	}
+
+	public static String padding(String str, int length) {
+		int diff = length - str.length();
+		if (diff <= 0)
+			return str;
+		return str + String.format("%-" + diff + "s", "").replaceAll(" ", ".");
 	}
 }

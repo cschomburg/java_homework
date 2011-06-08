@@ -1,0 +1,101 @@
+<!--
+	 Constantin Schomburg <me@xconstruct.net>
+
+	 Übung 07 - Programmieren (Java) - Gruppe 6
+	 14.05.11 - 31.05.11
+
+	 Ant-Tasks:
+	  - jar:   Generiere Jar-Package
+	  - run:   Führe Programm aus
+	  - doc:   Generiere Dokumentation
+	  - zip:   Komprimiere Source-Code
+	  - junit: Durchlaufe Tests
+
+	 Sonstige:
+	  - clean
+	  - compile
+	  - compile-tests
+-->
+
+<project name="PhoneBookTest" basedir="." default="main">
+
+	<property name="main-class" value="de.sim.PhoneBookTest" />
+
+	<property name="src.dir" value="src" />
+	<property name="lib.dir" value="lib" />
+	<property name="build.dir" value="build" />
+	<property name="classes.dir" value="${build.dir}/classes" />
+	<property name="doc.dir" value="doc" />
+	<property name="jar.dir" value="${build.dir}/jar" />
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${doc.dir}" />
+	</target>
+
+	<target name="compile">
+		<mkdir dir="${classes.dir}" />
+		<javac includeantruntime="false" srcdir="${src.dir}" destdir="${classes.dir}">
+			<!--<exclude name="**/*Test.java" />-->
+		</javac>
+		<copy todir="${classes.dir}">
+			<fileset dir="${src.dir}" excludes="**/*.java" />
+		</copy>
+	</target>
+
+	<target name="jar" depends="compile">
+		<mkdir dir="${jar.dir}" />
+		<jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+			<manifest>
+				<attribute name="Main-Class" value="${main-class}" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="run" depends="jar">
+		<java fork="true" classname="${main-class}">
+			<classpath>
+				<path location="${jar.dir}/${ant.project.name}.jar" />
+			</classpath>
+		</java>
+	</target>
+
+	<target name="main" depends="clean,run" />
+	<!--
+	<target name="compile-tests" depends="compile">
+		<javac includeantruntime="false" srcdir="${src.dir}" destdir="${classes.dir}">
+			<classpath>
+				<pathelement location="${src.dir}" />
+				<pathelement location="${ant.home}/lib/junit.jar" />
+			</classpath>
+			<include name="**/*Test.java" />
+		</javac>
+	</target>
+
+	<target name="junit" depends="clean,jar,compile-tests">
+		<junit>
+			<classpath>
+				<path location="${classes.dir}" />
+			</classpath>
+			<formatter type="plain" usefile="false" />
+			<batchtest fork="yes">
+				<fileset dir="${src.dir}" includes="**/*Test.java" />
+			</batchtest>
+		</junit>
+	</target>
+	-->
+
+	<target name="doc">
+		<javadoc sourcepath="${src.dir}" destdir="${doc.dir}" charset="UTF-8" />
+	</target>
+
+	<target name="zip">
+		<zip destfile="${build.dir}/${ant.project.name}.zip">
+			<fileset dir=".">
+				<include name="build.xml" />
+				<include name="${src.dir}/**" />
+			</fileset>
+		</zip>
+	</target>
+
+</project>
