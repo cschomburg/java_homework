@@ -1,3 +1,10 @@
+/**
+ * @author Constantin Schomburg <me@xconstruct.net>
+ *
+ * Übung 09 - Programmieren (Java) - Gruppe 6
+ * 07.06.11 - 21.06.11
+ */
+
 package de.sim;
 
 public class Entry {
@@ -31,6 +38,12 @@ public class Entry {
 		return padding(m_name, 25) + m_phoneNumber;
 	}
 
+	/**
+	 * Verlängert einen String auf eine bestimmte Länge mit Punkten
+	 * @param str String
+	 * @param length minimale Länge
+	 * @return verlängerter String
+	 */
 	public static String padding(String str, int length) {
 		int diff = length - str.length();
 		if (diff <= 0)

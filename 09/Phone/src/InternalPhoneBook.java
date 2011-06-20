@@ -1,3 +1,10 @@
+/**
+ * @author Constantin Schomburg <me@xconstruct.net>
+ *
+ * Übung 09 - Programmieren (Java) - Gruppe 6
+ * 07.06.11 - 21.06.11
+ */
+
 import java.util.HashMap;
 
 public class InternalPhoneBook {
@@ -14,9 +21,8 @@ public class InternalPhoneBook {
 
 	public String getCallerID(String phoneNumber) {
 		String caller = m_phoneBook.get(phoneNumber);
-		if (caller == null) {
-			caller = phoneNumber.toString() + " unbekannter Teilnehmer";
-		}
+		if (caller == null)
+			return phoneNumber.toString() + " unbekannter Teilnehmer";
 		return caller;
 	}
 }
